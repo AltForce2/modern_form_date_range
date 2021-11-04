@@ -73,16 +73,18 @@ class DateRange {
   }
 
   DateRange.fromMap(Map<String, dynamic> map) {
-    DateRange range = DateRange(type: map[_type].toString().toDateRangeType);
+    type = map[_type].toString().toDateRangeType;
 
     try {
       dynamic value = map[_value];
       if (value != null) {
-        if (range.type == DateRangeType.dateTimeRange) {
-          range.value = ModernFormDateTimeRangeExtension.fromMap(value);
+        if (type == DateRangeType.dateTimeRange) {
+          value = ModernFormDateTimeRangeExtension.fromMap(value);
         } else if (value is num) {
-          range.value = value.toInt();
+          value = value.toInt();
         }
+      } else if (type.isDurationType) {
+        value = 0;
       }
     } catch (e, s) {
       developer.log(
