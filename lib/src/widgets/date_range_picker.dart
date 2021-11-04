@@ -47,13 +47,18 @@ class DateRangePicker extends StatelessWidget {
                   text: dateRangeTypeToElegant(e), value: e))
               .toList(),
           onChanged: (v) {
-            if (exists) {
-              DateRangeType? lastType = value!.type;
-              if (v != lastType) {
-                onSelected(value!.copyWithRemoveValue().copyWith(type: v));
+            DateRangeType? lastType = value!.type;
+
+            if (v != lastType) {
+              DateRange _value = (value ?? DateRange())
+                  .copyWithRemoveValue()
+                  .copyWith(type: v);
+
+              if (type.isDurationType) {
+                _value.value = 1;
               }
-            } else {
-              onSelected(DateRange(type: v));
+
+              onSelected(_value);
             }
           },
         ),

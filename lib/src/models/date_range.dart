@@ -31,15 +31,17 @@ class DateRange {
         DateTime nowWithWeekday1 =
             now.subtract(Duration(days: daysForSubtractForWeekday1));
 
-        final int _value = ((value as int?) ?? 0);
-        final int daysForSubtract = _value * _numberOfDaysOfTheWeek;
+        final int _value = ((value as int?) ?? 1);
+        final int daysForSubtract =
+            (_value == 0 ? 0 : (_value - 1)) * _numberOfDaysOfTheWeek;
         DateTime start =
             nowWithWeekday1.subtract(Duration(days: daysForSubtract));
 
         return DateTimeRange(start: start, end: now);
       case DateRangeType.months:
-        final int _value = ((value as int?) ?? 0);
-        int newMonth = _value == 0 ? now.month : now.month - _value;
+        final int _value = ((value as int?) ?? 1);
+        int newMonth =
+            (_value == 0 || _value == 1) ? now.month : now.month - (_value - 1);
 
         DateTime start = DateTime(now.year, newMonth, 1);
         return DateTimeRange(start: start, end: now);
@@ -76,15 +78,15 @@ class DateRange {
     type = map[_type].toString().toDateRangeType;
 
     try {
-      dynamic value = map[_value];
-      if (value != null) {
+      dynamic mapValue = map[_value];
+      if (mapValue != null) {
         if (type == DateRangeType.dateTimeRange) {
-          value = ModernFormDateTimeRangeExtension.fromMap(value);
-        } else if (value is num) {
-          value = value.toInt();
+          value = ModernFormDateTimeRangeExtension.fromMap(mapValue);
+        } else if (mapValue is num) {
+          value = mapValue.toInt();
         }
       } else if (type.isDurationType) {
-        value = 0;
+        value = 1;
       }
     } catch (e, s) {
       developer.log(
