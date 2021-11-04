@@ -47,7 +47,7 @@ class DateRangePicker extends StatelessWidget {
                   text: dateRangeTypeToElegant(e), value: e))
               .toList(),
           onChanged: (v) {
-            DateRangeType? lastType = value!.type;
+            DateRangeType? lastType = value?.type;
 
             if (v != lastType) {
               DateRange _value = (value ?? DateRange())
