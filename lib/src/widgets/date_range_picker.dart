@@ -54,7 +54,7 @@ class DateRangePicker extends StatelessWidget {
                   .copyWithRemoveValue()
                   .copyWith(type: v);
 
-              if (type.isDurationType) {
+              if (v.isDurationType) {
                 _value.value = 1;
               }
 
