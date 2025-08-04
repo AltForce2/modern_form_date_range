@@ -1,4 +1,4 @@
-part of modern_form_date_range;
+part of '../../modern_form_date_range.dart';
 
 class DateRangePicker extends StatelessWidget {
   final String label;
@@ -16,7 +16,7 @@ class DateRangePicker extends StatelessWidget {
   final String Function(DateRangeType)? customDurationToElegantPlural;
 
   const DateRangePicker({
-    Key? key,
+    super.key,
     this.label = "Intervalo de datas",
     this.labelType = "Tipo de intervalo",
     this.value,
@@ -27,7 +27,7 @@ class DateRangePicker extends StatelessWidget {
     this.customDateRangeTypeToElegant,
     this.customDurationToElegantSingular,
     this.customDurationToElegantPlural,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +50,15 @@ class DateRangePicker extends StatelessWidget {
             DateRangeType? lastType = value?.type;
 
             if (v != lastType) {
-              DateRange _value = (value ?? DateRange())
+              DateRange valueInt = (value ?? DateRange())
                   .copyWithRemoveValue()
                   .copyWith(type: v);
 
               if (v.isDurationType) {
-                _value.value = 1;
+                valueInt.value = 1;
               }
 
-              onSelected(_value);
+              onSelected(valueInt);
             }
           },
         ),

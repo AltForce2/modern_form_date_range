@@ -1,6 +1,6 @@
 name: modern_form_date_range
 description: Date range picker abstraction, being possible to select a DateTimeRange, or custom ranges
-version: 2.0.0
+version: 2.0.1
 publish_to: none
 
 
@@ -9,24 +9,24 @@ environment:
   flutter: ">=3.32.4"
 
 dependencies:
-  modern_form:
+  modern_form:    
     git:
       url: git@github.com:apps-auth/modern_form_core.git
    
-  extended_masked_text: '>=3.0.1'
+  extended_masked_text: '>=3.0.1 <4.0.0'
   flutter:
     sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+
 
 
 dependency_overrides:   
-  modern_form:
+  modern_form:    
     git:
       url: git@github.com:apps-auth/modern_form_core.git
-      ref: 3.1.0
+      ref: 3.1.1
 
 #flutter:
