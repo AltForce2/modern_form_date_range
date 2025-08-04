@@ -1,4 +1,4 @@
-part of modern_form_date_range;
+part of '../../modern_form_date_range.dart';
 
 class DateRange {
   static const String _value = "value";
@@ -31,17 +31,17 @@ class DateRange {
         DateTime nowWithWeekday1 =
             now.subtract(Duration(days: daysForSubtractForWeekday1));
 
-        final int _value = ((value as int?) ?? 1);
+        final int valueInt = ((value as int?) ?? 1);
         final int daysForSubtract =
-            (_value == 0 ? 0 : (_value - 1)) * _numberOfDaysOfTheWeek;
+            (valueInt == 0 ? 0 : (valueInt - 1)) * _numberOfDaysOfTheWeek;
         DateTime start =
             nowWithWeekday1.subtract(Duration(days: daysForSubtract));
 
         return DateTimeRange(start: start, end: now);
       case DateRangeType.months:
-        final int _value = ((value as int?) ?? 1);
+        final int valueInt = ((value as int?) ?? 1);
         int newMonth =
-            (_value == 0 || _value == 1) ? now.month : now.month - (_value - 1);
+            (valueInt == 0 || valueInt == 1) ? now.month : now.month - (valueInt - 1);
 
         DateTime start = DateTime(now.year, newMonth, 1);
         return DateTimeRange(start: start, end: now);
