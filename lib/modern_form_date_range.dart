@@ -1,4 +1,4 @@
-library modern_form_date_range;
+library;
 
 import 'dart:convert';
 import 'dart:developer' as developer;

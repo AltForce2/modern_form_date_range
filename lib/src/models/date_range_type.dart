@@ -1,4 +1,4 @@
-part of modern_form_date_range;
+part of '../../modern_form_date_range.dart';
 
 enum DateRangeType {
   dateTimeRange,
