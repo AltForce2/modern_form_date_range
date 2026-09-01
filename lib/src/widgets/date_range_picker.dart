@@ -14,6 +14,9 @@ class DateRangePicker extends StatelessWidget {
   final String Function(DateRangeType)? customDateRangeTypeToElegant;
   final String Function(DateRangeType)? customDurationToElegantSingular;
   final String Function(DateRangeType)? customDurationToElegantPlural;
+  final String? customSaveText;
+  final String? customHelpText;
+  final Locale? customLocale;
 
   const DateRangePicker({
     super.key,
@@ -27,6 +30,9 @@ class DateRangePicker extends StatelessWidget {
     this.customDateRangeTypeToElegant,
     this.customDurationToElegantSingular,
     this.customDurationToElegantPlural,
+    this.customSaveText,
+    this.customHelpText,
+    this.customLocale,
   });
 
   @override
@@ -79,9 +85,9 @@ class DateRangePicker extends StatelessWidget {
             initialDateRange: initialDateRange,
             firstDate: DateTime(2000, 01, 01, 00, 00),
             lastDate: DateTime.now().add(const Duration(days: 1825)),
-            saveText: "Selecionar",
-            helpText: "Selecionar intervalo",
-            locale: const Locale('pt', "BR"),
+            saveText: customSaveText ?? "Selecionar",
+            helpText: customHelpText ?? "Selecionar intervalo",
+            locale: customLocale ?? const Locale('pt', "BR"),
           );
   }
 
