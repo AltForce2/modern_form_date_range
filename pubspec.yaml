@@ -24,5 +24,5 @@ dependency_overrides:
   modern_form:
     git:
       url: git@github.com:apps-auth/modern_form_core.git
-      ref: 3.1.2
+      ref: altcode/r_46b74da8e6a5
 #flutter:
