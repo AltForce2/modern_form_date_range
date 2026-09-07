@@ -146,7 +146,7 @@ class DateRangePicker extends StatelessWidget {
     }
 
     return ModernFormFakeTextField(
-      label: value?.type?.toElegantString,
+      label: value?.type != null ? dateRangeTypeToElegant(value!.type!) : null,
       initialValue: initialValue,
       sufixIconEnabled: false,
       onTap: () async {
