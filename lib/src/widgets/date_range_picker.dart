@@ -45,8 +45,7 @@ class DateRangePicker extends StatelessWidget {
         ModernFormTextPicker<DateRangeType>(
           label: labelType,
           forceMenu: true,
-          value:
-              value?.type != null ? dateRangeTypeToElegant(value!.type!) : null,
+          value: valueTypeToElegant,
           enabled: enabled,
           list: (customTypeValues ?? DateRangeType.values)
               .map((e) => ModernFormBottomSheetModel<DateRangeType>(
@@ -109,6 +108,9 @@ class DateRangePicker extends StatelessWidget {
     );
   }
 
+  String? get valueTypeToElegant =>
+      value?.type != null ? dateRangeTypeToElegant(value!.type!) : null;
+
   String dateRangeTypeToElegant(DateRangeType value) {
     if (customDateRangeTypeToElegant != null) {
       return customDateRangeTypeToElegant!(value);
@@ -146,7 +148,7 @@ class DateRangePicker extends StatelessWidget {
     }
 
     return ModernFormFakeTextField(
-      label: value?.type != null ? dateRangeTypeToElegant(value!.type!) : null,
+      label: valueTypeToElegant,
       initialValue: initialValue,
       sufixIconEnabled: false,
       onTap: () async {
