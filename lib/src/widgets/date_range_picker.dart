@@ -14,6 +14,9 @@ class DateRangePicker extends StatelessWidget {
   final String Function(DateRangeType)? customDateRangeTypeToElegant;
   final String Function(DateRangeType)? customDurationToElegantSingular;
   final String Function(DateRangeType)? customDurationToElegantPlural;
+  final String? customSaveText;
+  final String? customHelpText;
+  final Locale? customLocale;
 
   const DateRangePicker({
     super.key,
@@ -27,6 +30,9 @@ class DateRangePicker extends StatelessWidget {
     this.customDateRangeTypeToElegant,
     this.customDurationToElegantSingular,
     this.customDurationToElegantPlural,
+    this.customSaveText,
+    this.customHelpText,
+    this.customLocale,
   });
 
   @override
@@ -39,8 +45,7 @@ class DateRangePicker extends StatelessWidget {
         ModernFormTextPicker<DateRangeType>(
           label: labelType,
           forceMenu: true,
-          value:
-              value?.type != null ? dateRangeTypeToElegant(value!.type!) : null,
+          value: valueTypeToElegant,
           enabled: enabled,
           list: (customTypeValues ?? DateRangeType.values)
               .map((e) => ModernFormBottomSheetModel<DateRangeType>(
@@ -79,9 +84,9 @@ class DateRangePicker extends StatelessWidget {
             initialDateRange: initialDateRange,
             firstDate: DateTime(2000, 01, 01, 00, 00),
             lastDate: DateTime.now().add(const Duration(days: 1825)),
-            saveText: "Selecionar",
-            helpText: "Selecionar intervalo",
-            locale: const Locale('pt', "BR"),
+            saveText: customSaveText ?? "Selecionar",
+            helpText: customHelpText ?? "Selecionar intervalo",
+            locale: customLocale ?? const Locale('pt', "BR"),
           );
   }
 
@@ -102,6 +107,9 @@ class DateRangePicker extends StatelessWidget {
       },
     );
   }
+
+  String? get valueTypeToElegant =>
+      value?.type != null ? dateRangeTypeToElegant(value!.type!) : null;
 
   String dateRangeTypeToElegant(DateRangeType value) {
     if (customDateRangeTypeToElegant != null) {
@@ -140,7 +148,7 @@ class DateRangePicker extends StatelessWidget {
     }
 
     return ModernFormFakeTextField(
-      label: value?.type?.toElegantString,
+      label: valueTypeToElegant,
       initialValue: initialValue,
       sufixIconEnabled: false,
       onTap: () async {

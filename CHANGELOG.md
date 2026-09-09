@@ -1,3 +1,4 @@
+## 3.0.1 rótulo do campo de duração passa por customDateRangeTypeToElegant (default inalterado)
 ## 1.0.5 fix
 ## 1.0.4 fix
 ## 1.0.3 fix
